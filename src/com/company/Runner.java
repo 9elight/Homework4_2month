@@ -91,6 +91,11 @@ public class Runner extends Thread {
                 } catch (InterruptedException e) {
                 }
                 System.out.println(Thread.currentThread().getName() + " бежит к " + r4.getName());
+                try {
+                    sleep(5000);
+                } catch (InterruptedException e) {
+
+                }
 
                 super.run();
 

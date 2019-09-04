@@ -25,6 +25,12 @@ public class Runner extends Thread {
 
                 }
                 r2.start();
+                try {
+                    r2.join();
+                    System.out.println(Thread.currentThread().getName() + " берет палочку ");
+                } catch (InterruptedException e) {
+
+                }
                 break;
             case "Runner 2":
                 System.out.println(Thread.currentThread().getName() + " берет палочку ");
@@ -35,6 +41,13 @@ public class Runner extends Thread {
 
                 }
                 r3.start();
+                try {
+                    r3.join();
+                    System.out.println(Thread.currentThread().getName() + " берет палочку");
+                    System.out.println(Thread.currentThread().getName() + " бежит к " + new Runner("Runner 1").getName());
+                    sleep(5000);
+                } catch (InterruptedException e) {}
+
                 break;
             case "Runner 3":
                 System.out.println(Thread.currentThread().getName() + " берет палочку ");
@@ -45,15 +58,30 @@ public class Runner extends Thread {
 
                 }
                 r4.start();
+                try {
+                    r4.join();
+                    System.out.println(Thread.currentThread().getName() + " берет палочку");
+                    System.out.println(Thread.currentThread().getName() + " бежит к " + r2.getName());
+                    sleep(5000);
+                } catch (InterruptedException e) {}
                 break;
             case "Runner 4":
                 System.out.println(Thread.currentThread().getName() + " берет палочку ");
                 System.out.println(Thread.currentThread().getName() + " бежит к " + r5.getName());
+
                 try {
                     sleep(5000);
                 } catch (InterruptedException e) {
                 }
                 r5.start();
+                try {
+                    r5.join();
+                    System.out.println(Thread.currentThread().getName() + " берет палочку");
+                    System.out.println(Thread.currentThread().getName() + " бежит к " + r3.getName());
+                    sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 break;
             case "Runner 5":
                 System.out.println(Thread.currentThread().getName() + " берет палочку ");
@@ -62,10 +90,12 @@ public class Runner extends Thread {
                     sleep(5000);
                 } catch (InterruptedException e) {
                 }
+                System.out.println(Thread.currentThread().getName() + " бежит к " + r4.getName());
 
                 super.run();
 
         }
+
 
     }
 }
